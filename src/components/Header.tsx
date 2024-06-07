@@ -1,17 +1,24 @@
+import { Box } from '@mui/material';
 import React from 'react'
 
 interface Header {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     background: string;
     fixed: boolean;
     padding: string;
+    style?: Object;
 }
 
-const Header = ({ children, background, fixed, padding }: Header) => {
+const Header = ({ children, background, fixed, padding, style }: Header) => {
     return (
-        <div style={{ position: fixed ? 'fixed' : '-moz-initial', top: '0', left: '0', width: '100%', padding: padding, background: background }}>
+        <Box
+            position={fixed ? 'fixed' : '-moz-initial'}
+            bgcolor={background}
+            padding={padding}
+            sx={style}
+        >
             {children}
-        </div>
+        </Box>
     )
 }
 
