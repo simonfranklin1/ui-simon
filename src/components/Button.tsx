@@ -87,6 +87,7 @@ const Button = ({
                         color={textColor}
                         borderRadius={borderRadius}
                         border={border}
+                        component={"button"}
                         sx={{
                             transition: transition ? `${duration} ${transition}` : "-moz-initial",
                             cursor: cursor,
