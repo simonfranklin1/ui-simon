@@ -3,10 +3,10 @@ import React from 'react'
 
 interface ButtonI {
     padding?: string,
-    display: 'block' | 'flex' | 'none',
+    display: 'block' | 'flex' | 'inline-block' | 'none',
     onClick?: () => void,
     background: string,
-    textColor: string,
+    textColor: string | "#000",
     borderRadius?: string | "0px",
     text: string,
     link?: {
@@ -16,11 +16,27 @@ interface ButtonI {
     hoverBackground?: string,
     animation?: "grow" | "up" | "down",
     cursor?: "moz-initial" | "pointer" | "all" | "cell" | "copy",
-    duration?: string | "initial", 
-    transition?: string | "ease" | "ease-in-out" | "ease-in"
+    duration?: string | "initial",
+    transition?: string | "ease" | "ease-in-out" | "ease-in",
+    border: "none" | string
 }
 
-const Button = ({ padding, display, onClick, background, text, link, hoverBackground, textColor, animation, cursor, borderRadius, duration, transition }: ButtonI) => {
+const Button = ({
+    padding,
+    display,
+    onClick,
+    background,
+    text,
+    link,
+    hoverBackground,
+    textColor,
+    animation,
+    cursor,
+    borderRadius,
+    duration,
+    transition,
+    border
+}: ButtonI) => {
     return (
         <>
             {
@@ -33,6 +49,7 @@ const Button = ({ padding, display, onClick, background, text, link, hoverBackgr
                             bgcolor={background}
                             color={textColor}
                             borderRadius={borderRadius}
+                            border={border}
                             sx={{
                                 transitionDuration: duration,
                                 transition: transition,
@@ -59,10 +76,15 @@ const Button = ({ padding, display, onClick, background, text, link, hoverBackgr
                     <Box
                         display={display}
                         padding={padding}
-                        onClick={onClick ? onClick : () => { }}
+                        onClick={onClick && onClick}
                         bgcolor={background}
                         color={textColor}
+                        borderRadius={borderRadius}
+                        border={border}
                         sx={{
+                            transitionDuration: duration,
+                            transition: transition,
+                            cursor: cursor,
                             "&:hover": animation === "grow" ?
                                 {
                                     scale: "1.1", background: hoverBackground || null
