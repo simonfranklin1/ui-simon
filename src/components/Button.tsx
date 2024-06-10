@@ -20,7 +20,7 @@ interface ButtonI {
     duration?: string | "0s",
     transition?: "moz-initial" | "ease" | "ease-in-out" | "ease-in",
     border?: string | "none",
-    fontFamily?: string | ""
+    fontFamily?: string
 }
 
 const Button = ({
@@ -57,10 +57,10 @@ const Button = ({
                         href={link?.where}
                         target={link?.target}
                         sx={{
-                            transition: transition ? `${duration} ${transition}` : "-moz-initial",
+                            transition: transition ? `${duration} ${transition}` : "inherit",
                             cursor: cursor,
-                            textTransform: textTransform ? textTransform : "-moz-initial",
-                            fontFamily: fontFamily ? fontFamily : "-moz-initial",
+                            textTransform: textTransform ? textTransform : "inherit",
+                            fontFamily: fontFamily ? fontFamily : "inherit",
                             "&:hover": animation === "grow" ?
                                 {
                                     scale: "1.1", background: hoverBackground || null
@@ -89,10 +89,10 @@ const Button = ({
                         border={border}
                         component={"button"}
                         sx={{
-                            transition: transition ? `${duration} ${transition}` : "-moz-initial",
+                            transition: transition ? `${duration} ${transition}` : "inherit",
                             cursor: cursor,
-                            textTransform: textTransform ? textTransform : "-moz-initial",
-                            fontFamily: fontFamily ? fontFamily : "-moz-initial",
+                            textTransform: textTransform ? textTransform : "inherit",
+                            fontFamily: fontFamily ? fontFamily : "inherit",
                             "&:hover": animation === "grow" ?
                                 {
                                     scale: "1.1", background: hoverBackground || null
