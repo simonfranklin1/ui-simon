@@ -3,7 +3,7 @@ import React from 'react'
 
 interface ButtonI {
     padding?: string,
-    display: 'flex' | 'block' | 'none',
+    display: 'block' | 'flex' | 'none',
     onClick?: () => void,
     background: string,
     textColor: string,
@@ -15,10 +15,12 @@ interface ButtonI {
     },
     hoverBackground?: string,
     animation?: "grow" | "up" | "down",
-    cursor?: "default" | "pointer"
+    cursor?: "moz-initial" | "pointer" | "all" | "cell" | "copy",
+    duration?: string | "initial", 
+    transition?: string | "ease" | "ease-in-out" | "ease-in"
 }
 
-const Button = ({ padding, display, onClick, background, text, link, hoverBackground, textColor, animation, cursor, borderRadius }: ButtonI) => {
+const Button = ({ padding, display, onClick, background, text, link, hoverBackground, textColor, animation, cursor, borderRadius, duration, transition }: ButtonI) => {
     return (
         <>
             {
@@ -27,11 +29,13 @@ const Button = ({ padding, display, onClick, background, text, link, hoverBackgr
                         <Box
                             display={display}
                             padding={padding}
-                            onClick={onClick ? onClick : () => { }}
+                            onClick={onClick && onClick}
                             bgcolor={background}
                             color={textColor}
                             borderRadius={borderRadius}
                             sx={{
+                                transitionDuration: duration,
+                                transition: transition,
                                 cursor: cursor,
                                 "&:hover": animation === "grow" ?
                                     {
