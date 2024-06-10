@@ -8,7 +8,8 @@ interface ButtonI {
     background: string,
     textColor: "#000" | string,
     borderRadius?: "0px" | string,
-    text: string,
+    children: string | React.ReactNode,
+    textTransform?: "lowercase" | "uppercase" | "capitalize"
     link?: {
         where?: string,
         target?: "_blank" | "_self" | "_parent" | "_top";
@@ -26,7 +27,7 @@ const Button = ({
     display,
     onClick,
     background,
-    text,
+    children,
     link,
     hoverBackground,
     textColor,
@@ -35,7 +36,8 @@ const Button = ({
     borderRadius,
     duration,
     transition,
-    border
+    border,
+    textTransform
 }: ButtonI) => {
     return (
         <>
@@ -53,9 +55,9 @@ const Button = ({
                         href={link?.where}
                         target={link?.target}
                         sx={{
-                            transitionDuration: duration,
-                            transition: transition,
+                            transition: transition ? `${duration} ${transition}` : "-moz-initial",
                             cursor: cursor,
+                            textTransform: textTransform ? textTransform : "-moz-initial",
                             "&:hover": animation === "grow" ?
                                 {
                                     scale: "1.1", background: hoverBackground || null
@@ -71,7 +73,7 @@ const Button = ({
                                     } : null
                         }}
                     >
-                        {text}
+                        {children}
                     </Box>
                 ) || (
                     <Box
@@ -83,8 +85,9 @@ const Button = ({
                         borderRadius={borderRadius}
                         border={border}
                         sx={{
-                            transition: `${duration} ${duration}`,
+                            transition: transition ? `${duration} ${transition}` : "-moz-initial",
                             cursor: cursor,
+                            textTransform: textTransform ? textTransform : "-moz-initial",
                             "&:hover": animation === "grow" ?
                                 {
                                     scale: "1.1", background: hoverBackground || null
@@ -100,7 +103,7 @@ const Button = ({
                                     } : null
                         }}
                     >
-                        {text}
+                        {children}
                     </Box>
                 )
             }
