@@ -19,7 +19,8 @@ interface ButtonI {
     cursor?: "moz-initial" | "pointer" | "all" | "cell" | "copy",
     duration?: string | "0s",
     transition?: "moz-initial" | "ease" | "ease-in-out" | "ease-in",
-    border?: string | "none"
+    border?: string | "none",
+    fontFamily?: string | ""
 }
 
 const Button = ({
@@ -37,7 +38,8 @@ const Button = ({
     duration,
     transition,
     border,
-    textTransform
+    textTransform,
+    fontFamily
 }: ButtonI) => {
     return (
         <>
@@ -58,6 +60,7 @@ const Button = ({
                             transition: transition ? `${duration} ${transition}` : "-moz-initial",
                             cursor: cursor,
                             textTransform: textTransform ? textTransform : "-moz-initial",
+                            fontFamily: fontFamily ? fontFamily : "-moz-initial",
                             "&:hover": animation === "grow" ?
                                 {
                                     scale: "1.1", background: hoverBackground || null
@@ -88,6 +91,7 @@ const Button = ({
                             transition: transition ? `${duration} ${transition}` : "-moz-initial",
                             cursor: cursor,
                             textTransform: textTransform ? textTransform : "-moz-initial",
+                            fontFamily: fontFamily ? fontFamily : "-moz-initial",
                             "&:hover": animation === "grow" ?
                                 {
                                     scale: "1.1", background: hoverBackground || null
